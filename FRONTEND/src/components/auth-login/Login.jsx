@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
   const navigate = useNavigate();
+  const {login}=useAuth()
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -10,23 +12,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:3000/api/users/login";
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ email: credentials.email, password: credentials.password })
-    });
-
-    const data = await response.json();
-    if (data.client) {
-      localStorage.setItem('client', data.client);
-      alert(data.message);
-      navigate('/');
-    } else {
-      alert(data.error);
-    }
+    await login(credentials)
   };
 
   const onHandleChange = (e) => {

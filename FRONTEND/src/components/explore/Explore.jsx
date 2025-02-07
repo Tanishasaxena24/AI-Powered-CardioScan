@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import usePrediction from "../hooks/prediction";
+import usePrediction from "../../hooks/usePrediction";
 
 const Explore = () => {
   const {
@@ -11,18 +11,18 @@ const Explore = () => {
     handleImageChange,
     handleRemoveImage,
     handleSubmit,
-  } =usePrediction();
+  } = usePrediction();
 
   return (
     <div className="min-h-screen bg-white">
-   
+
 
       {/* Hero Section */}
       <section className="text-center py-7">
         <h1 className="text-xl md:text-2xl italic font-semibold text-blue-900">
           "Revolutionizing Heart Health: AI-Powered Cardiovascular Disease Detection with ECG Analysis"
         </h1>
-        
+
         {(!prediction || !confidence) && (
           <div className="h-48 rounded-lg my-2 mx-auto max-w-4xl">
             <img src="/ecgimg.webp" className="w-[900px] h-48 rounded-md" alt="Default ECG" />
@@ -40,39 +40,39 @@ const Explore = () => {
         {/* Upload Button & Input */}
         <div className="flex justify-center mt-3 gap-6">
           {/* Label acts as button */}
-         {
+          {
             prediction && confidence ? (
-                <>
+              <>
                 <label
-                htmlFor="uploadImage"
-                className="bg-red-900 text-white px-6 py-2 rounded-lg  transition"
-              >
-                <span className="italic font-semibold">Upload ECG Image</span>
-              </label>
-             
+                  htmlFor="uploadImage"
+                  className="bg-red-900 text-white px-6 py-2 rounded-lg  transition"
+                >
+                  <span className="italic font-semibold">Upload ECG Image</span>
+                </label>
+
               </>
-            ):(
-                <>
+            ) : (
+              <>
                 <label
-                htmlFor="uploadImage"
-                className="bg-red-900 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition cursor-pointer"
-              >
-                <span className="italic font-semibold">Upload ECG Image</span>
-              </label>
-              <input
-                id="uploadImage"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageChange}
-              />
+                  htmlFor="uploadImage"
+                  className="bg-red-900 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition cursor-pointer"
+                >
+                  <span className="italic font-semibold">Upload ECG Image</span>
+                </label>
+                <input
+                  id="uploadImage"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
               </>
             )
-         }
+          }
         </div>
 
         {/* Preview Image */}
-        {selectedImage &&(
+        {selectedImage && (
           <div className="relative mt-6 flex justify-center">
             <img
               src={selectedImage}
@@ -81,18 +81,18 @@ const Explore = () => {
             />
             {/* Remove Button */}
             {
-            prediction && confidence ?(
+              prediction && confidence ? (
                 <span></span>
-            ): (
-<button
-              onClick={handleRemoveImage}
-              className="absolute top-2 right-[500px] bg-black text-white rounded-full px-2 py-1 hover:bg-red-700 transition"
-            >
-              ✕
-            </button>
-            ) 
+              ) : (
+                <button
+                  onClick={handleRemoveImage}
+                  className="absolute top-2 right-[500px] bg-black text-white rounded-full px-2 py-1 hover:bg-red-700 transition"
+                >
+                  ✕
+                </button>
+              )
             }
-            
+
           </div>
         )}
 
@@ -100,25 +100,25 @@ const Explore = () => {
         {selectedImage && (
           <div className="mt-6">
             {
-                prediction && confidence ? (
-                    <button
-                    disabled
-                    
-                    className="bg-red-800 opacity-100 text-white px-6 py-2 rounded-lg "
-                    
-                  >
-Submit                  </button>
-                ):(
-                    <button
-                    onClick={handleSubmit}
-                    className="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
-                    disabled={loading}
-                  >
-                    {loading ? "Loading..." : "Submit"}
-                  </button>
-                )
+              prediction && confidence ? (
+                <button
+                  disabled
+
+                  className="bg-red-800 opacity-100 text-white px-6 py-2 rounded-lg "
+
+                >
+                  Submit                  </button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
+                  disabled={loading}
+                >
+                  {loading ? "Loading..." : "Submit"}
+                </button>
+              )
             }
-          
+
           </div>
         )}
 
@@ -158,12 +158,12 @@ Submit                  </button>
 
         {/* back button */}
         {
-            prediction && confidence && (
-                <div className="mt-7">
-                    <button onClick={() => window.location.reload()} className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition"
-                    >Check another ECG</button>
-                </div>
-            )
+          prediction && confidence && (
+            <div className="mt-7">
+              <button onClick={() => window.location.reload()} className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition"
+              >Check another ECG</button>
+            </div>
+          )
         }
       </section>
     </div>

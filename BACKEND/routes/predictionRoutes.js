@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { spawn } = require('child_process');
 const router = express.Router();
+const protectedRoute=require('../middlewares/protectedRoutes.js')
 
 // Prediction function
 const predict = (req, res) => {
@@ -67,6 +68,6 @@ const predict = (req, res) => {
 };
 
 // Define routes
-router.post('/', predict);
+router.post('/',protectedRoute,predict);
 
 module.exports = router;

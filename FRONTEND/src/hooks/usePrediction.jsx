@@ -1,4 +1,6 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+
 
 // Custom Hook for Image Upload and Prediction
 const usePrediction = () => {
@@ -17,7 +19,7 @@ const usePrediction = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a valid image file.");
+      toast.error("Please upload a valid image file.");
     }
   };
 
@@ -29,7 +31,7 @@ const usePrediction = () => {
   // Handle submitting the image to the backend
   const handleSubmit = async () => {
     if (!selectedImage) {
-      alert("Please upload an ECG image first!");
+      toast.error("Please upload an ECG image first!");
       return;
     }
 
@@ -48,6 +50,9 @@ const usePrediction = () => {
 
       const response = await fetch("http://localhost:5000/api/predict", {
         method: "POST",
+        headers:{
+          auth:localStorage.getItem('auth')
+        },
         body: formData,
       });
 
@@ -64,12 +69,12 @@ console.log("data in data",data);
         const roundedConfidence = parseFloat(data.confidence).toFixed(2);
         setConfidence(`${roundedConfidence}%`);
       } else {
-        alert("Error: " + data.error);
+        toast.error("Error: " + data.error);
       }
     } catch (error) {
       console.error("Error occurred during prediction:", error);
       setLoading(false);
-      alert("Error occurred during the prediction.");
+      toast.error("Error occurred during the prediction.");
     }
   };
 
