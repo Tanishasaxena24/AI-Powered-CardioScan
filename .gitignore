@@ -13,6 +13,7 @@ BACKEND/.env
 TRAIN MODEL/data
 TRAIN MODEL/__pycache__/
 BACKEND/scripts/__pycache__/
+BACKEND/uploads
 
 BACKEND/models/*.h5
 TRAIN MODEL/models/*.h5
