@@ -52,4 +52,4 @@ y_val_classes = np.argmax(y_val, axis=1)
 print(classification_report(y_val_classes, y_pred_classes))
 
 # Save the model
-ensemble_model.save('models/ims_data_testing.h5')
+ensemble_model.save('../MODELS/ims_data_testing.h5')
