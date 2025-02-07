@@ -13,12 +13,16 @@ BACKEND/.env
 TRAIN MODEL/data
 TRAIN MODEL/__pycache__/
 BACKEND/scripts/__pycache__/
+uploads/
+# models/
 
 BACKEND/models/*.h5
 TRAIN MODEL/models/*.h5
 
 FRONTEND/dist
 BACKEND/dist
+
+# DATA/
 
 dist-ssr
 *.local

@@ -6,8 +6,9 @@ const router = express.Router();
 // Prediction function
 const predict = (req, res) => {
   console.log("Request received for prediction...");
+  console.log("file path",req.file.path)
   const imagePath = req.file.path.replace(/\\/g, '/'); // Ensure consistent path formatting
-  const modelPath = path.resolve('models/combinedata_model.h5'); // Use absolute path
+  const modelPath = path.resolve('../MODELS/combinedata_model.h5'); // Use absolute path
 
   console.log("Image Path:", imagePath);
   console.log("Model Path:", modelPath);

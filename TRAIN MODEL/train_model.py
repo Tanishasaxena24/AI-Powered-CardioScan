@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 from preprocessing import preprocess_images
 
 # Preprocess data
-data_dir = 'data/train'
+data_dir = '../DATA/test'
 images_cnn, images_vit, labels = preprocess_images(data_dir)
 X_train_cnn, X_val_cnn, X_train_vit, X_val_vit, y_train, y_val = train_test_split(
     images_cnn, images_vit, labels, test_size=0.2, random_state=42
@@ -52,4 +52,4 @@ y_val_classes = np.argmax(y_val, axis=1)
 print(classification_report(y_val_classes, y_pred_classes))
 
 # Save the model
-ensemble_model.save('models/ims_data_testing.h5')
+ensemble_model.save('../MODELS/testing.h5')
