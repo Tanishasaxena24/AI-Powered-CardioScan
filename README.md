@@ -66,5 +66,3 @@ npm run dev
 ```  
 
 🎉 **Your AI-Powered CardioScan project is now up and running!** 🚀🔥  
-
-Let me know if you need any modifications! 😊
