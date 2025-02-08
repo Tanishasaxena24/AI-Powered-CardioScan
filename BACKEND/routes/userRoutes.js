@@ -12,7 +12,7 @@ router.post("/signup", async (req, res) => {
         error: error.details[0].message
 
     });
-    const { username, email, password, profession } = req.body;
+    const { username, email, password, profession,gender } = req.body;
 
     try {
 
@@ -20,8 +20,13 @@ router.post("/signup", async (req, res) => {
         if (checkUser) {
             return res.status(401).json({ error: "User already exist" })
         }
+        const boyProfilePic=`https://avatar.iran.liara.run/public/boy?username=${username}`
+        const girlProfilePic=`https://avatar.iran.liara.run/public/girl?username=${username}`
         // Create a new user instance
-        const newUser = new User({ username, email, password, profession });
+        const newUser = new User({ username, email, password, profession,
+            profilePic:gender==='male'?boyProfilePic:girlProfilePic,
+            gender
+         });
 
         // Save the user to MongoDB
         await newUser.save();

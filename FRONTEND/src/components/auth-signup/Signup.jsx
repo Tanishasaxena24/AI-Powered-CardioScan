@@ -8,7 +8,8 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    cpassword: ""
+    cpassword: "",
+    gender:""
   });
 
   const handleSubmit = async (e) => {
@@ -43,8 +44,9 @@ const Signup = () => {
               <label htmlFor="name" className="block text-gray-700 font-medium">Username</label>
               <input
                 type="text"
-                name="username"
+                name="name"
                 onChange={onHandleChange}
+                placeholder='Enter Name'
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-red-900"
                 required
               />
@@ -55,6 +57,7 @@ const Signup = () => {
                 type="email"
                 name="email"
                 onChange={onHandleChange}
+                placeholder='Enter Email'
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-red-900"
                 required
               />
@@ -62,18 +65,70 @@ const Signup = () => {
             <div>
               <label htmlFor="prof" className="block text-gray-700 font-medium">What best defines you?</label>
               <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-black" name="profession"  onChange={onHandleChange}>
-                <option value="patient">Patient</option>
+                <option value="" >Select</option>
+                <option value="Patient">Patient</option>
                 <option value="Cardiologist">Cardiologist</option>
-                <option value="doctor">Doctor</option>
-                <option value="ECG_Operator">ECG Operator</option>
-                <option value="others">Other</option>
+                <option value="Doctor">Doctor</option>
+                <option value="ECG Operator">ECG Operator</option>
+                <option value="Others">Other</option>
               </select>
             </div>
             <div>
+
+
+
+
+
+
+
+
+
+{/* Gender Selection */}
+<div>
+            <label className="block text-gray-700 font-medium mb-2">Gender</label>
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  onChange={onHandleChange}
+                  className="form-radio text-red-900"
+                  required
+                />
+                <span className="text-gray-700">Male</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  onChange={onHandleChange}
+                  className="form-radio text-red-900"
+                  required
+                />
+                <span className="text-gray-700">Female</span>
+              </label>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
               <label htmlFor="password" className="block text-gray-700 font-medium">Password</label>
               <input
                 type="password"
                 name="password"
+                placeholder='Enter Password'
                 onChange={onHandleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-red-900"
                 required
@@ -84,6 +139,7 @@ const Signup = () => {
               <input
                 type="password"
                 name="cpassword"
+                placeholder='Enter Confirm Password'
                 onChange={onHandleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-red-900"
                 required

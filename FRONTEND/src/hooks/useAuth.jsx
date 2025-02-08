@@ -13,10 +13,11 @@ const useAuth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
-          username:credentials.username,
+          username:credentials.name,
           email:credentials.email, 
           password:credentials.password, 
-          profession:credentials.profession 
+          profession:credentials.profession,
+          gender:credentials.gender
         }),
       });
 
