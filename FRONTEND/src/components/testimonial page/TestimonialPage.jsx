@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import toast from "react-hot-toast";
+import useTestimonials from '../../hooks/useTestimonials';
+
 
 function TestimonialPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    feedback: '',
+    comment: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const{addTestimonials,loading,submitted}=useTestimonials()
+  // const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = async(e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    // localStorage.setItem("comment", formData.comment); 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.feedback) {
-      alert('Please fill in all fields before submitting.');
+    if (!formData.comment) {
+      toast.error('Please fill in all fields before submitting.');
       return;
     }
 
     // Handle form submission (send data to backend or display a success message)
     console.log('Submitted Testimonial:', formData);
-    setSubmitted(true);
+    await addTestimonials(formData.comment)
     
     // Optionally reset form
-    setFormData({ name: '', email: '', feedback: '' });
+    setFormData({ name: '', email: '', comment: '' });
   };
 
   return (
@@ -42,7 +47,7 @@ function TestimonialPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name Field */}
-              <input
+              {/*   <input
                 type="text"
                 name="name"
                 value={formData.name}
@@ -50,10 +55,10 @@ function TestimonialPage() {
                 placeholder="Your Name"
                 className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 required
-              />
+              />*/}
 
               {/* Email Field */}
-              <input
+             {/* <input
                 type="email"
                 name="email"
                 value={formData.email}
@@ -61,12 +66,12 @@ function TestimonialPage() {
                 placeholder="Your Email"
                 className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 required
-              />
+              />*/}
 
               {/* Feedback Field */}
               <textarea
-                name="feedback"
-                value={formData.feedback}
+                name="comment"
+                value={formData.comment}
                 onChange={handleChange}
                 placeholder="Write your review/feedback here..."
                 rows="4"
