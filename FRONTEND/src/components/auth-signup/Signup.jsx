@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import useAuth from '../../hooks/useAuth';
 const Signup = () => {
   const navigate = useNavigate();
+  const {loading,signup}=useAuth()
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -11,31 +12,20 @@ const Signup = () => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (credentials.password !== credentials.cpassword) {
-      alert("Password not matched");
-      return;
+    e.preventDefault()
+    console.log("credentials",credentials)
+    if(credentials.password !== credentials.cpassword){
+      return alert("Password did not matched")
     }
-    const url = "http://localhost:3000/api/users";
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
-    });
-
-    const data = await response.json();
-    if (data.client) {
-      localStorage.setItem('client', data.client);
-      alert(data.message);
-      navigate('/');
-    } else {
-      alert(data.error);
-    }
-  };
-
+    await signup(credentials)
+  }
   const onHandleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value.trim() });
   };
+
+  // if(loading){
+  //   return <div>Please wait Loading...</div>
+  // }
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen ">
@@ -53,7 +43,7 @@ const Signup = () => {
               <label htmlFor="name" className="block text-gray-700 font-medium">Username</label>
               <input
                 type="text"
-                name="name"
+                name="username"
                 onChange={onHandleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-red-900"
                 required
@@ -71,12 +61,12 @@ const Signup = () => {
             </div>
             <div>
               <label htmlFor="prof" className="block text-gray-700 font-medium">What best defines you?</label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-black" name="prof">
-                <option value="Patient">Patient</option>
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-900 text-black" name="profession"  onChange={onHandleChange}>
+                <option value="patient">Patient</option>
                 <option value="Cardiologist">Cardiologist</option>
-                <option value="Doctor">Doctor</option>
-                <option value="ECG Operator">ECG Operator</option>
-                <option value="Other">Other</option>
+                <option value="doctor">Doctor</option>
+                <option value="ECG_Operator">ECG Operator</option>
+                <option value="others">Other</option>
               </select>
             </div>
             <div>

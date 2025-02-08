@@ -10,6 +10,8 @@ import Explore from './components/explore/Explore.jsx'
 import TestimonialPage from './components/testimonial page/TestimonialPage.jsx'
 import Login from './components/auth-login/Login.jsx'
 import Signup from './components/auth-signup/Signup.jsx'
+import { Toaster } from 'react-hot-toast'; // ✅ Import react-hot-toast
+
 
 
 const router=createBrowserRouter(
@@ -32,6 +34,7 @@ const router=createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Toaster reverseOrder={false} />  {/* ✅ Added Toaster */}
     <RouterProvider router={router} />
   </React.StrictMode>,
 )
