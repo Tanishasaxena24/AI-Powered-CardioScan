@@ -22,7 +22,7 @@ TRAIN MODEL/models/*.h5
 FRONTEND/dist
 BACKEND/dist
 
-# DATA/
+DATA/
 
 dist-ssr
 *.local

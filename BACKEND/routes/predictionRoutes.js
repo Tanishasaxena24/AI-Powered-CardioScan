@@ -9,7 +9,8 @@ const predict = (req, res) => {
   console.log("Request received for prediction...");
   console.log("file path",req.file.path)
   const imagePath = req.file.path.replace(/\\/g, '/'); // Ensure consistent path formatting
-  const modelPath = path.resolve('../MODELS/combinedata_model.h5'); // Use absolute path
+  // const imagePath = "https://res.cloudinary.com/dyuat7ths/image/upload/v1739633389/CardioScan/1739633388956.jpg"; // Ensure consistent path formatting
+  const modelPath = path.resolve('../MODELS/combineall.h5'); // Use absolute path
 
   console.log("Image Path:", imagePath);
   console.log("Model Path:", modelPath);
