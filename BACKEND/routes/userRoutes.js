@@ -57,7 +57,12 @@ router.post("/login", async (req, res) => {
 
     try {
         // Create a new user instance
+        console.log(email,password)
         const checkUser = await User.findOne({ email })
+        // console.log("checkuser",checkUser)
+        if(!checkUser){
+            return res.status(400).json({ error: "User not found" })
+        }
         if (checkUser.password != password) {
             return res.status(400).json({ error: "Email or password not correct" })
         }
@@ -72,6 +77,7 @@ router.post("/login", async (req, res) => {
 
         res.status(201).json({ message: "User logged in successfully!", token });
     } catch (error) {
+        console.log("error",error)
         res.status(500).json({ error: "Something went wrong!" });
     }
 });
